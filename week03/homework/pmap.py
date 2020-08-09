@@ -31,9 +31,11 @@ def params_check(params):
             print(f"command '{p}' is invalid")
             return False
         if p == '-n':
+            global n_argv
             n_argv = int(params[params.index('-n') + 1])
             continue
         if p == '-f':
+            global f_argv
             f_argv = params[params.index('-f') + 1]
             if f_argv != 'ping' and f_argv != 'tcp':
                 print(f"command '{p}' param '{f_argv}' is invalid")
@@ -58,6 +60,7 @@ def params_check(params):
                 return False
             continue
         if p == '-w':
+            global w_argv
             w_argv = params[params.index('-w') + 1]
             try:
                 f = open(w_argv, 'a+', encoding='utf-8')
@@ -68,12 +71,14 @@ def params_check(params):
                 return False
             continue
         if p == '-m':
+            global m_argv
             m_argv = params[params.index('-m') + 1]
             if m_argv != 'proc' and m_argv != 'thread':
                 print(f"command '{p}' param '{m_argv}' is invalid")
                 return False
             continue
         if p == '-v':
+            global v_argv
             v_argv = True
             continue
     print('params checked ok!')
@@ -88,7 +93,7 @@ def ip_test(ip):
     f.close()
     if(ping_result.find('无法访问目标主机') >= 0 or ping_result.find('Destination Host Unreachable') >= 0):
         print(f'ping {ip} failed!')
-        return None
+        return (ip, 'failed!')
     else:
         print(f"ping {ip} success!")
         return (ip, 'success!')
@@ -128,7 +133,7 @@ if __name__ == '__main__':
 
     params = sys.argv[1:]
     # params = ['-n', '4', '-f', 'ping', '-ip',
-    #           '192.168.1.100-192.168.1.103', '-w', 'result.json']
+    #           '192.168.1.100-192.168.1.110', '-w', 'result.json']
     pool = None
     if(params_check(params)):
         if (m_argv == "proc"):
