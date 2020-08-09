@@ -127,8 +127,8 @@ if __name__ == '__main__':
     # ip_test('192.168.1.104')
 
     params = sys.argv[1:]
-    params = ['-n', '4', '-f', 'ping', '-ip',
-              '192.168.1.100-192.168.1.103', '-w', 'result.json']
+    # params = ['-n', '4', '-f', 'ping', '-ip',
+    #           '192.168.1.100-192.168.1.103', '-w', 'result.json']
     pool = None
     if(params_check(params)):
         if (m_argv == "proc"):
