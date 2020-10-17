@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% block head %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Allenh">
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    
+    {% endblock %}
+</head>
+
+<body>
+
+    <div id="db-nav-movie" class="nav">
+        <div class="nav-wrap">
+            <div class="nav-primary">
+                <div class="nav-logo">
+                    <a href="https://movie.douban.com">豆瓣电影</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="wrapper">
+        <div id="content">
+            {% block content %} {% endblock %}
+        </div>
+    </div>
+    {% block js %}
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+
+    {% endblock %}
+</body>
+
+</html>
