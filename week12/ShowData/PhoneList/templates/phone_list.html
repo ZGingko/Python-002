@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% if keys %}
+    <title>包含{{keys}}的结果</title>
+    {% else %}
+    <title>手机</title>
+    {% endif %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">首页</a>
+        <!-- <form class="form-inline">
+        <input class="form-control mr-sm-2" name="q" type="search" placeholder="搜索">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+    </form> -->
+    </nav>
+    <div class="container">
+        {% if keys %}
+        <h3 class="mt-5 mb-3">手机列表且包含{{keys}}关键字</h3>
+        {% else %}
+        <h3 class="mt-5 mb-3">手机列表</h3>
+        {% endif %}
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">标题</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in phone_titles %}
+                <tr>
+                    <th><a href="phone_detail?title={{p.phone_title|urlencode}}">{{p.phone_title}}</a></th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
